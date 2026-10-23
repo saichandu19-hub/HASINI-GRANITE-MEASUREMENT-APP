@@ -1,0 +1,36 @@
+name: Build HASINI Granite APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get source code
+        uses: actions/checkout@v4
+
+      - name: Install Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Build APK
+        run: |
+          chmod +x gradlew 2>/dev/null || true
+          if [ -f gradlew ]; then
+            ./gradlew assembleDebug
+          else
+            echo "Gradle wrapper missing"
+            exit 1
+          fi
+
+      - name: Save APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: HASINI-GRANITE-APK
+          path: app/build/outputs/apk/debug/*.apk
+          
