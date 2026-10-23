@@ -18,15 +18,13 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
       - name: Build APK
-        run: |
-          chmod +x gradlew 2>/dev/null || true
-          if [ -f gradlew ]; then
-            ./gradlew assembleDebug
-          else
-            echo "Gradle wrapper missing"
-            exit 1
-          fi
+        run: gradle --no-daemon assembleDebug
 
       - name: Save APK
         uses: actions/upload-artifact@v4
