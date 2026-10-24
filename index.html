@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HASINI GRANITE MEASUREMENT SHEET</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background-color: #f4f6f9; color: #333; }
+        header { background-color: #1b4d3e; color: white; padding: 15px; text-align: center; }
+        h1 { margin: 0; font-size: 20px; }
+        .container { padding: 15px; max-width: 600px; margin: auto; }
+        .card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 15px; }
+        input, select { width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 16px; }
+        button { background-color: #27ae60; color: white; border: none; padding: 12px; width: 100%; font-size: 16px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        button:hover { background-color: #219150; }
+        .footer { text-align: center; margin-top: 20px; font-size: 14px; color: #555; padding: 10px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>HASINI GRANITE MEASUREMENT SHEET</h1>
+        <p style="margin:5px 0 0; font-size:12px;">Granite Measurement • Billing • Customer Accounts</p>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h3>Measurement Sheet</h3>
+            <label>Customer Name:</label>
+            <input type="text" id="customer" placeholder="Enter customer name">
+
+            <label>Sheet Name:</label>
+            <input type="text" id="sheetName" value="Sheet 1">
+
+            <label>Color / Granite:</label>
+            <input type="text" id="graniteColor" value="Black Galaxy Granite">
+
+            <label>Rate per SFT (₹):</label>
+            <input type="number" id="rate" value="135">
+
+            <button onclick="alert('Sheet saved successfully!')">Save Measurements</button>
+        </div>
+
+        <div class="footer">
+            <p><strong>Privacy Policy</strong> | <strong>Terms of Service</strong></p>
+            <p>App created by <strong>INTURI VENKATA SAI CHANDU</strong><br>© All rights reserved by INTURI VENKATA SAI CHANDU</p>
+        </div>
+    </div>
+
+</body>
+</html>
