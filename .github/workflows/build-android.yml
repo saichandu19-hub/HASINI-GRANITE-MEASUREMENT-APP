@@ -32,7 +32,11 @@ jobs:
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
-
+      - name: Extract Android project ZIP
+        run: |
+          mkdir -p android-project
+          unzip -o HASINI_GRANITE_ANDROID_PROJECT_READY.zip -d android-project
+          ls -la android-project
       - name: Build Debug APK
         run: gradle --no-daemon -p app assembleDebug
 
