@@ -36,7 +36,7 @@ jobs:
           set -e
           mkdir -p android-project
           unzip -o HASINI_GRANITE_ANDROID_PROJECT_READY.zip -d android-project
-          echo "Project files:"
+          echo "Extracted project files:"
           find android-project -maxdepth 4 -type f | head -100
 
       - name: Set target SDK to 35
@@ -45,8 +45,8 @@ jobs:
           set -e
           find android-project -type f -name 'build.gradle' -exec sed -i 's/targetSdk 28/targetSdk 35/g' {} +
           find android-project -type f -name 'build.gradle.kts' -exec sed -i 's/targetSdk = 28/targetSdk = 35/g' {} +
-          echo "Checking target SDK:"
-          grep -R -n 'targetSdk' android-project --include='build.gradle' --include='build.gradle.kts' || true
+          echo "Target SDK configuration:"
+          grep -R -n 'targetSdk' android-project --include='build.gradle' --include='build.gradle.kts'
 
       - name: Build Debug APK
         shell: bash
@@ -55,9 +55,17 @@ jobs:
           cd android-project
           gradle --no-daemon assembleDebug
 
+      - name: Verify APK exists
+        shell: bash
+        run: |
+          set -e
+          find android-project -type f -name '*.apk' -print
+          test -n "$(find android-project -type f -name '*.apk' -print -quit)"
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: HASINI-GRANITE-APK
           path: android-project/**/build/outputs/apk/debug/*.apk
           if-no-files-found: error
+          
